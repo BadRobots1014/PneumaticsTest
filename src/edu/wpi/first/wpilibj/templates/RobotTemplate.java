@@ -28,7 +28,8 @@ public class RobotTemplate extends SimpleRobot {
     /**
      * This function is called once each time the robot enters autonomous mode.
      */
-    public void autonomous() {
+    public void autonomous() 
+    {
         
     }
 
@@ -39,8 +40,11 @@ public class RobotTemplate extends SimpleRobot {
             bButtonPressed = false,
             xButtonPressed = false,
             yButtonPressed = false;
-    
-    public void operatorControl() {
+    /**
+     * This is called continuously while operatorControl is enabled.
+     */
+    public void operatorControl()
+    {   
         while (this.isEnabled())
         {
             if (controller.getRawButton(1))
@@ -48,15 +52,12 @@ public class RobotTemplate extends SimpleRobot {
                 aButtonPressed = true;
             }
             
+            //These "else if" statements are called if the button has been pressed but is now released.
             else if (aButtonPressed)
             {
                 aButtonPressed = false;
-
-                if (!aButtonPressed)
-                {
-                    in.set(false);
-                    out.set(false);
-                }
+                in.set(false);
+                out.set(false);
             }
 
             if (controller.getRawButton(2))
@@ -67,12 +68,8 @@ public class RobotTemplate extends SimpleRobot {
             else if (bButtonPressed)
             {
                 bButtonPressed = false;
-
-                if (!bButtonPressed)
-                {
-                    in.set(false);
-                    out.set(false);
-                }
+                in.set(false);
+                out.set(false);
             }
 
             if (controller.getRawButton(3))
@@ -83,9 +80,7 @@ public class RobotTemplate extends SimpleRobot {
             else if (xButtonPressed)
             {
                 xButtonPressed = false;
-                
-                if (!xButtonPressed)
-                    valve.set(Relay.Value.kOff);
+                valve.set(Relay.Value.kOff);
             }
             
             if (controller.getRawButton(4))
@@ -96,22 +91,24 @@ public class RobotTemplate extends SimpleRobot {
             else if (yButtonPressed)
             {
                 yButtonPressed = false;
-                
                 valve.set(Relay.Value.kOff);
             }
 
+            //When the 'a' button is pressed the piston will extend.
             if (aButtonPressed)
             {
                 out.set(false);
                 in.set(true);
             }
-
+            
+            //When the 'b' button is pressed the piston will contract.
             if (bButtonPressed)
             {
                 in.set(false);
                 out.set(true);
             }
-
+            
+            //When the 'x' button is pressed the compressor will turn on (if permitted by the pressure release valve).
             if (xButtonPressed)
             {
                 SmartDashboard.putBoolean("compressorOn", true);
@@ -128,7 +125,7 @@ public class RobotTemplate extends SimpleRobot {
             
             if (input.get())
             {
-                System.out.println("INPUT RETURNED TRUE, SETTING VALVE TO OFF");
+                System.out.println("INPUT RETURNED TRUE, SETTING VALVE TO OFF!!!");
                 valve.set(Relay.Value.kOff);
             }
             
@@ -139,7 +136,8 @@ public class RobotTemplate extends SimpleRobot {
     /**
      * This function is called once each time the robot enters test mode.
      */
-    public void test() {
+    public void test() 
+    {
     
     }
 }
