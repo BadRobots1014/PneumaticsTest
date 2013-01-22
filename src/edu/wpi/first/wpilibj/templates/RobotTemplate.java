@@ -90,6 +90,7 @@ public class RobotTemplate extends SimpleRobot {
             
             if (controller.getRawButton(4))
             {
+                System.out.println("Controller y pressed");
                 yButtonPressed = true;
             }
             
@@ -117,6 +118,9 @@ public class RobotTemplate extends SimpleRobot {
                 SmartDashboard.putBoolean("compressorOn", true);
                 valve.set(Relay.Value.kOn);
             }
+            
+            if (yButtonPressed)
+                valve.setDirection(Relay.Direction.kBoth);
             
             
             SmartDashboard.putBoolean("compressorOn", xButtonPressed);
