@@ -18,6 +18,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * creating this project, you must also update the manifest file in the resource
  * directory.
  */
+ 
+ //Commented by Ryan Nofzinger
 public class RobotTemplate extends SimpleRobot {
     Solenoid in = new Solenoid(1),
             out = new Solenoid(2);
@@ -47,10 +49,14 @@ public class RobotTemplate extends SimpleRobot {
     {   
         while (this.isEnabled())
         {
+            
+            //Checks if a button has been pressed
+            
             if (controller.getRawButton(1))
             {
                 aButtonPressed = true;
             }
+            //Checks for if "a" has been pressed
             
             //These "else if" statements are called if the button has been pressed but is now released.
             else if (aButtonPressed)
@@ -59,7 +65,9 @@ public class RobotTemplate extends SimpleRobot {
                 in.set(false);
                 out.set(false);
             }
-
+            
+            //Checks for if "b" has been pressed
+            
             if (controller.getRawButton(2))
             {
                 bButtonPressed = true;
@@ -71,6 +79,8 @@ public class RobotTemplate extends SimpleRobot {
                 in.set(false);
                 out.set(false);
             }
+            
+            //Checks for if "x" has been pressed
 
             if (controller.getRawButton(3))
             {
@@ -82,6 +92,8 @@ public class RobotTemplate extends SimpleRobot {
                 xButtonPressed = false;
                 valve.set(Relay.Value.kOff);
             }
+            
+            //Checks for if "y" has been pressed
             
             if (controller.getRawButton(4))
             {
@@ -115,12 +127,14 @@ public class RobotTemplate extends SimpleRobot {
                 valve.set(Relay.Value.kOn);
             }
             
+            //Calls what each button does
             
             SmartDashboard.putBoolean("compressorOn", xButtonPressed);
             SmartDashboard.putBoolean("pistonOut", aButtonPressed);
             SmartDashboard.putBoolean("pistonIn", bButtonPressed);
             
             SmartDashboard.putBoolean("pressure relief", input.get());
+            
             //System.out.println("output " + input.get());
             
             if (input.get())
