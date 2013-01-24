@@ -45,6 +45,8 @@ public class RobotTemplate extends SimpleRobot {
      */
     public void operatorControl()
     {   
+        valve.setDirection(Relay.Direction.kForward);
+        
         while (this.isEnabled())
         {
             if (controller.getRawButton(1))
@@ -115,10 +117,6 @@ public class RobotTemplate extends SimpleRobot {
                 SmartDashboard.putBoolean("compressorOn", true);
                 valve.set(Relay.Value.kOn);
             }
-            
-            if (yButtonPressed)
-                valve.setDirection(Relay.Direction.kBoth);
-            
             
             SmartDashboard.putBoolean("compressorOn", xButtonPressed);
             SmartDashboard.putBoolean("pistonOut", aButtonPressed);
